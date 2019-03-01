@@ -34,11 +34,13 @@ color;
            gpixel = imquant(i,j,2);
            bpixel = imquant(i,j,3);
            
+          % total = total + rpixel + gpixel + bpixel;
+           
            chist(rpixel,gpixel,bpixel) = chist(rpixel,gpixel,bpixel) + 1 ;
        end 
    end
 
-   keyboard
+   chist = reshape(chist,1,16.^3);
    
 end
 

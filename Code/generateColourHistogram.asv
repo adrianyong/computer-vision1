@@ -22,15 +22,27 @@ chist = zeros(16, 16, 16);
 %chist(1,:) = [];
 %chist(end,:) = [];
 
-[width, height] = size(imquant);
+[height,width,color] = size(imquant);
 
+width;
+height;
+color;
 
-   for i = 1:width
-       for j = 1:height
+total;
+
+   for i = 1:height
+       for j = 1:width
            rpixel = imquant(i,j,1);
-           rpixel = imquant(i,j,1);
+           gpixel = imquant(i,j,2);
+           bpixel = imquant(i,j,3);
+           
+          % total = total + rpixel + gpixel + bpixel;
+           
+           chist(rpixel,gpixel,bpixel) = chist(rpixel,gpixel,bpixel) + 1 ;
        end 
    end
 
+   chist_reshape = reshape
+   
 end
 
