@@ -29,9 +29,9 @@ for i = 1:length(test_list)
         vec = [vec, value];
         
         if(value < 615)
-            figure
-            imshow(train_im)
-            pause(5)
+            %figure
+            %imshow(train_im)
+            %pause(5)
         end
     end
     
