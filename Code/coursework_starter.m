@@ -16,8 +16,8 @@
 %implementation. You need to reimplement the above two functions and also
 %implement the 'colour histogram' feature extraction.
 
-%FEATURE = 'tiny image';
-FEATURE = 'colour histogram';
+FEATURE = 'tiny image';
+%FEATURE = 'colour histogram';
 
 CLASSIFIER = 'nearest neighbor';
 
