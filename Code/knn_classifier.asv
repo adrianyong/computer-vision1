@@ -3,20 +3,22 @@ function [ vec ] = knn_classifier(train_feats, train_labels, test_feats)
 vec = [];
 k = 0;
 nn = 10000000000; %nearest neighbor
+cum_sum = 0;
 
-[height,width] = size(test_feats);
+[height,width] = size(train_feats);
+
+
 
 for i = 1:height %test image
-    for j = 1:width %train images
-        neigh = abs(test_feats(i, j)-train_feats(i, j)); %calculates difference
-        if neigh < nn %if lower nn is found, assign new nn
-           nn = neigh; 
-           lab = train_labels(j, 1);
-           j
-        end
+    for j = 1:width
+        neigh = abs(test_feats(i, j)-train_feats(i, j)); %calculates difference 
+        cum_
     end
-    nn
-    vec = [vec;lab];
+    if neigh < nn %if lower nn is found, assign new nn
+            nn = neigh; 
+            lab = train_labels(i, 1);
+        end
+    vec = [vec;lab];   
     nn = 10000000000;
 end
 
