@@ -82,13 +82,25 @@ switch lower(FEATURE)
         % square portion out of each image. Making the tiny images zero mean and
         % unit length (normalizing them) will increase performance modestly.
         
+        %Provided tiny image function
+        
         train_image_feats = get_tiny_images(train_image_paths);
         test_image_feats  = get_tiny_images(test_image_paths);
+        
+        
+        %Our tiny image function
+        
+        %train_image_feats = tiny_image(train_image_paths);
+        %test_image_feats  = tiny_image(test_image_paths);
+        
     case 'colour histogram'
         %You should allow get_colour_histograms to take parameters e.g.
         %quantisation, colour space etc.
+        
         train_image_feats = get_colour_histograms(train_image_paths);
         test_image_feats  = get_colour_histograms(test_image_paths);
+        
+      
 end
 %% Step 2: Classify each test image by training and using the appropriate classifier
 % Each function to classify test features will return an N x 1 cell array,
@@ -121,7 +133,12 @@ switch lower(CLASSIFIER)
     % predicted_categories is an M x 1 cell array, where each entry is a string
     %  indicating the predicted category for each test image.
     % Useful functions: pdist2 (Matlab) and vl_alldist2 (from vlFeat toolbox)
-    predicted_categories = nearest_neighbor_classify(train_image_feats, train_labels, test_image_feats);
+    
+    %OUR KNN classifier
+    predicted_categories = knn_classifier(train_image_feats, train_labels, test_image_feats);
+    
+    %Provided KNN classifier
+    %predicted_categories = nearest_neighbor_classify(train_image_feats, train_labels, test_image_feats);
 end
 
 %% Step 3: Build a confusion matrix and score the recognition system

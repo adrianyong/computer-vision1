@@ -9,11 +9,9 @@ for i = 1:length(files)
     test_im = imread(test_file); %test image
     chist_test = generateColourHistogram(test_im);
     value = chist_test;
-    vec = [vec, value];
+    vec = [vec;value];
 
 end
-
-vec = rot90(vec);
 
 end
 

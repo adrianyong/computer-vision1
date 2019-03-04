@@ -23,6 +23,6 @@ tiny_im = zeros(16,16,3);
            end
     end
     
-tiny_im = reshape(tiny_im,(16^2)*3,1);
+tiny_im = reshape(tiny_im,1,(16^2)*3);
 
 end

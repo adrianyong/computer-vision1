@@ -20,7 +20,7 @@ chist = zeros(16, 16, 16);
        end 
    end
 
-   chist = reshape(chist,16^3,1);
+   chist = reshape(chist,1,4096);
    
    
 end

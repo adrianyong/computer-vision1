@@ -9,10 +9,10 @@ for i = 1:length(files)
     test_im = imread(test_file);
     tiny_im = generate_tiny_image(test_im);
     value = tiny_im;
-    vec = [vec, value];
+    vec = [vec;value];
 
 end
 
-vec = rot90(vec);
+%vec = rot90(vec);
 
 end

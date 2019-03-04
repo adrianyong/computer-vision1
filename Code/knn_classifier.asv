@@ -1,0 +1,25 @@
+function [ vec ] = knn_classifier(train_feats, train_labels, test_feats)
+
+vec = [];
+k = 0;
+nn = 10000000000; %nearest neighbor
+
+[height,width] = size(test_feats);
+
+for i = 1:height %test image
+    for j = 1:width %train images
+        neigh = abs(test_feats(i, j)-train_feats(i, j)); %calculates difference
+        if neigh < nn %if lower nn is found, assign new nn
+           nn = neigh; 
+           lab = train_labels(j, 1);
+           j
+        end
+    end
+    nn
+    vec = [vec;lab];
+    nn = 10000000000;
+end
+
+%vec = rot90(vec);
+
+end
