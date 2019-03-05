@@ -16,8 +16,8 @@
 %implementation. You need to reimplement the above two functions and also
 %implement the 'colour histogram' feature extraction.
 
-FEATURE = 'tiny image';
-%FEATURE = 'colour histogram';
+%FEATURE = 'tiny image';
+FEATURE = 'colour histogram';
 
 CLASSIFIER = 'nearest neighbor';
 
@@ -84,14 +84,14 @@ switch lower(FEATURE)
         
         %Provided tiny image function
         
-        train_image_feats = get_tiny_images(train_image_paths);
-        test_image_feats  = get_tiny_images(test_image_paths);
+        %train_image_feats = get_tiny_images(train_image_paths);
+        %test_image_feats  = get_tiny_images(test_image_paths);
         
         
         %Our tiny image function
         
-        %train_image_feats = tiny_image(train_image_paths);
-        %test_image_feats  = tiny_image(test_image_paths);
+        train_image_feats = tiny_image(train_image_paths);
+        test_image_feats  = tiny_image(test_image_paths);
         
     case 'colour histogram'
         %You should allow get_colour_histograms to take parameters e.g.

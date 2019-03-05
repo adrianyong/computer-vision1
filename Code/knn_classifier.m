@@ -1,57 +1,54 @@
 function [ vec ] = knn_classifier(train_feats, train_labels, test_feats)
 
 vec = [];
-k = 3;
-nn = 10000000000; %nearest neighbor
-nns = [];
+k = 5;
 diff = 0;
-index = 0;
-indices = [];
-freq = zeros(1,16);
 
 [height,width] = size(test_feats);
-[height_train,~] = size(train_feats);
-
 
 for h = 1:height %test image, go through each test image
-    for i = 1:height_train %train image, this goes through each train image
-        for j = 1:width
-            neigh = abs(test_feats(h, j)-train_feats(i, j)); %calculates difference 
-            diff = diff + neigh;
-        end
-        if diff < nn %if lower nn is found, assign new nn
-            nn = diff; 
-            index = i;
-            indices = [indices, index];
-        end
-    diff = 0;
+    all_diffs = [];
+    for i = 1:1500 %train image, this goes through each train image
+         for j = 1:width
+                diff = diff + abs(test_feats(h, j)-train_feats(i, j)); %calculates difference 
+         end
+         all_diffs = [all_diffs;diff];
+         diff = 0;
     end
     
-    %index iteration here
+    smallest = 1/0;
+    index = 0;
     
-    indices = flip(indices);
+    nn_index = 0;
+    k_smallest_indices = [];
     
-    it = 1;
-    
-    for x = 1:length(indices)
-        it = it+1;
-        indices(x) = floor(indices(x)/100)+1;
-        indices(x);
-        if it <= k
-            freq(indices(x)) = freq(indices(x)) + 1;
-        end
+    for n = 1:k     %finds the k smallest differences in all_diffs
+        [smallest, index] = min(all_diffs);
+         all_diffs(index) = 1/0;
+         k_smallest_indices = [k_smallest_indices, index];
     end
     
-    [lab_val, nn_index] = max(freq);
-    nn_index = (nn_index*100);
-    lab = train_labels(nn_index, 1);
+    f = [];
+    max_mode = 0;
+    
+    for x = 1:length(k_smallest_indices) 
+        
+            freq_val = floor(k_smallest_indices(x)/100);
+            
+            f = [f, freq_val+1];
+            max_mode = mode(f);
+            
+            if max_mode == 16
+                max_mode = 15;
+            end
+    end
+    
+    f = sort(f);
+    nn_index = (max_mode*100);
+    
+    lab = train_labels(nn_index, 1); % correspondong label is retrieved in train_labels
     vec = [vec;lab];
     
-    indices = [];
-    freq = zeros(1,16);
-    
-    index = 0;
-    nn = 10000000000;
 end
 
 %vec = rot90(vec);
