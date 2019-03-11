@@ -1,5 +1,6 @@
 function [chist] = generateColourHistogram(img)
 
+%img = rgb2hsv(img);
 img = double(img);
 imquant = img/255;
 imquant = round(imquant*(16-1))+1;

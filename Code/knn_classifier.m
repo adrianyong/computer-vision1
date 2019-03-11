@@ -1,7 +1,7 @@
 function [ vec ] = knn_classifier(train_feats, train_labels, test_feats)
 
 vec = [];
-k = 5;
+k = 7;
 diff = 0;
 
 [height,width] = size(test_feats);
